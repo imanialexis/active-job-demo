@@ -36,23 +36,27 @@ Your adapter can be set in the config/application.rb file via
     rails g job name    
 Which autogenerates jobs folder
 3. In your class
-    class FirstJob < ActiveJob::Base
-    queue_as :default
-    
-      def perform(args)
-        #Whatever you want to do goes here
-      end
-    end
+```ruby
+class FirstJob < ActiveJob::Base
+queue_as :default
+
+  def perform(args)
+    #Whatever you want to do goes here
+  end
+end
+```
     
 4. Scaffold
 5. Enqueue job:
-    :wait - enqueues the job with the specified delay;
-    :wait_until - enqueues the job at the time specified (override :wait if both specified;
-    :queue - enqueues the job on the specified queue
+* `:wait` - enqueues the job with the specified delay;
+* `:wait_until` - enqueues the job at the time specified (override :wait if both specified;
+* `:queue` - enqueues the job on the specified queue
 Ex. 
-    FirstJob.perform_later()
-    FirstJob.set(wait_until: Date.tomorrow.noon).perform_later()
-    FirstJob.set(wait: 1.week).perform_later()
+```ruby
+FirstJob.perform_later()
+FirstJob.set(wait_until: Date.tomorrow.noon).perform_later()
+FirstJob.set(wait: 1.week).perform_later()
+```
 
 
 ## Real World Applications
